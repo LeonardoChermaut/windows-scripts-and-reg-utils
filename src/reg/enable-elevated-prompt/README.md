@@ -4,10 +4,9 @@ This script allows you to make modifications to the Windows Registry by importin
 
 ## Usage
 
-1. Copy the content of the script and save it to a file with a `.reg` extension, for example, `RegistryModifications.reg`.
-2. Double-click the saved `.reg` file to import the registry changes.
-3. You may be prompted to confirm the changes. Click "Yes" or "OK" to proceed.
-4. After the registry modifications have been applied, it is recommended to **restart your system** for the changes to take effect.
+1. Double-click the saved `.reg` file to import the registry changes.
+2. You may be prompted to confirm the changes. Click "Yes" or "OK" to proceed.
+3. After the registry modifications have been applied, it is recommended to **restart your system** for the changes to take effect.
 
 ## Note
 
