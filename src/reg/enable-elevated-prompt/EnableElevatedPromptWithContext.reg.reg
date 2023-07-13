@@ -1,0 +1,51 @@
+Windows Registry Editor Version 5.00
+
+;Add_Open_CMD_and_Powershell_to_Context_Menu.reg
+
+;Right-Click Background only
+
+;CMD Prompt
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\01MenuCmd]
+"MUIVerb"="Command Prompts"
+"Icon"="cmd.exe"
+"ExtendedSubCommandsKey"="Directory\\Background\\ContextMenus\\MenuCmd"
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuCmd\shell\open]
+"MUIVerb"="Command Prompt"
+"Icon"="cmd.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuCmd\shell\open\command]
+@="cmd.exe /s /k pushd \"%V\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuCmd\shell\runas]
+"MUIVerb"="Command Prompt Elevated"
+"Icon"="cmd.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuCmd\shell\runas\command]
+@="powershell.exe -Command \"Start-Process cmd.exe -ArgumentList '/s /k pushd \"%V\"' -Verb RunAs\""
+
+; PowerShell
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\02MenuPowerShell]
+"MUIVerb"="PowerShell Prompts"
+"Icon"="powershell.exe"
+"ExtendedSubCommandsKey"="Directory\\Background\\ContextMenus\\MenuPowerShell"
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuPowerShell\shell\open]
+"MUIVerb"="PowerShell"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuPowerShell\shell\open\command]
+@="powershell.exe -noexit -command Set-Location '%V'"
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuPowerShell\shell\runas]
+"MUIVerb"="PowerShell Elevated"
+"Icon"="powershell.exe"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Directory\Background\ContextMenus\MenuPowerShell\shell\runas\command]
+@="powershell.exe -Command \"Start-Process powershell.exe -ArgumentList '-noexit -command Set-Location \"%V\"' -Verb RunAs\""
