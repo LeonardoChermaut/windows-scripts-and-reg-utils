@@ -1,6 +1,6 @@
 ## Description
 
-### Windows10 Advanced Modifications is a project aimed at providing advanced utility tools for power users. It involves a collection of scripts, Registry Editor (regedit) modifications, and PowerShell commands to add specific and significant functionalities to enhance the Windows 10 operating system.
+### Windows scripts and regedit utils advanced modifications is a project aimed at providing advanced utility tools for power users. It involves a collection of scripts, Registry Editor (regedit) modifications, and PowerShell commands to add specific and significant functionalities to enhance the Windows 10 operating system.
 
 ## The Windows10 Advanced Tools project offers the following key features:
 
