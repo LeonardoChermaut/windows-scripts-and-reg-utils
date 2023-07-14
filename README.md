@@ -10,4 +10,4 @@
 
 - **PowerShell Commands**: A set of PowerShell commands system administration tasks, manage processes, manipulate files and folders, and perform advanced configurations.
 
-- **OBS**: Don't needed run with Administrator, but is recommended.
+- **OBS**: *Please note that the script provided is for informational purposes only. Use it responsibly and at your own risk.*
