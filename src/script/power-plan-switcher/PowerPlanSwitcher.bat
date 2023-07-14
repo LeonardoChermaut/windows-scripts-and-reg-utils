@@ -1,7 +1,25 @@
 @echo off
+
+:: Check if the script is being run as an administrator
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo Running as administrator...
+    goto :UACPrompt
+) else (
+    goto :Admin
+)
+
+:UACPrompt
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    "%temp%\getadmin.vbs"
+    exit /B
+
+:Admin
 setlocal
 
-set PRESS_KEY_TO_ENTER_OR_MENU="Press any 'ENTER' to return to the menu or press 'ESC' to exit."
+set IS_INVALID_POWER_PLAN="Invalid power plan GUID. Exiting..."
+set INSTALL_SUCCESSFUL="Power plan installed successfully!"
 
 :Menu
 cls
@@ -11,7 +29,7 @@ echo 2. High Performance
 echo 3. Power Saver
 echo 4. Ultimate Performance
 
-set /p choice=Enter the number of the desired power plan:
+set /p choice=Enter the number of the desired power plan: 
 
 if %choice% equ 1 (
     call :SetPowerPlan a1841308-3541-4fab-bc81-f71556f20b4a "Power Saver"
@@ -23,19 +41,12 @@ if %choice% equ 1 (
     call :SetPowerPlan e9a42b02-d5df-448d-aa00-03f14749eb61 "Ultimate Performance"
 ) else (
     echo Invalid choice. Exiting...
-    pause >nul
     exit /b
 )
 
-echo Power plan installed successfully!
-echo.
-echo %PRESS_KEY_TO_ENTER_OR_MENU%
-choice /c 12 /n /m ""
-if %errorlevel% equ 2 (
-    exit /b
-) else (
-    goto Menu
-)
+echo %INSTALL_SUCCESSFUL%
+timeout /t 2 >nul
+goto Menu
 
 :SetPowerPlan
 set "GUID=%~1"
@@ -44,28 +55,17 @@ set "PlanName=%~2"
 powercfg /getactivescheme | findstr /C:"%GUID%" >nul
 if %errorlevel% equ 0 (
     echo The "%PlanName%" power plan is already active.
-    echo.
-    echo %PRESS_KEY_TO_ENTER_OR_MENU%
-    choice /c 12 /n /m ""
-    if %errorlevel% equ 2 (
-        exit /b
-    ) else (
-        exit /b
-    )
+    timeout /t 2 >nul
+    goto :eof
 )
 
 powercfg /list | findstr /C:"%GUID%" >nul
 if %errorlevel% neq 0 (
     echo.
-    echo Invalid power plan GUID. Exiting...
-    echo %PRESS_KEY_TO_ENTER_OR_MENU%
-    choice /c 12 /n /m ""
-    if %errorlevel% equ 2 (
-        exit /b
-    ) else (
-        exit /b
-    )
+    echo %IS_INVALID_POWER_PLAN%
+    timeout /t 2 >nul
+    goto :eof
 )
 
 powercfg /setactive %GUID%
-exit /b
+goto :eof
