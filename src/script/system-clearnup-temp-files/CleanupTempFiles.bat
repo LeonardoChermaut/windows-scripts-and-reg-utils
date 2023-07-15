@@ -1,12 +1,18 @@
 @echo off
-echo Cleaning up junk system files, please wait...
+
+REM Set variables
+set CLEANUP_SUCCESS="System junk cleaned up successfully!"
+set CLEANING_UP="Cleaning up junk system files, please wait..."
+set NEED_ADMIN="This script requires administrator privileges. Please provide your credentials."
+
+echo %CLEANING_UP%
 
 REM Check if running with administrator privileges
 NET SESSION >NUL 2>&1
 IF %ERRORLEVEL% EQU 0 (
     GOTO :AdminMode
 ) ELSE (
-    echo This script requires administrator privileges. Please provide your credentials.
+    echo %NEED_ADMIN%
     pause
     sudo "%~dp0%~nx0"
     exit /B
@@ -33,5 +39,8 @@ for %%f in (%folders%) do (
     del /f /s /q "%%f\recent\*.*"
 )
 
-echo System junk cleaned up successfully!
+:AdminMode
+cleanmgr /dskcleanup /silent /d c:
+
+echo %CLEANUP_SUCCESS%
 echo. & pause
