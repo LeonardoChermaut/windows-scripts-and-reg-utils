@@ -16,13 +16,13 @@ set HKEY_LOCAL_MACHINE="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo View
 
 REM Enable Windows Photo Viewer in Windows 10 Registry
 echo Enabling Windows Photo Viewer...
-reg add "%HKEY_LOCAL_MACHINE%" /f /t REG_SZ /d %PHOTO_VIEWER% >nul
+reg add %HKEY_LOCAL_MACHINE% /f /t REG_SZ /d %PHOTO_VIEWER% >nul
 
 REM Set Windows Photo Viewer as the default app for desired extensions
 for %%x in (%extensions%) do (
     echo Setting default app association for %%x...
     assoc %%x=PHOTO_VIEWER
-    reg add "%HKEY_LOCAL_MACHINE%" /f /v "%%x" /t REG_SZ /d %PHOTO_VIEWER% >nul
+    reg add %HKEY_LOCAL_MACHINE% /f /v "%%x" /t REG_SZ /d %PHOTO_VIEWER% >nul
 )
 
 REM Display message for enabling Windows Photo Viewer
