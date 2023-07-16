@@ -24,9 +24,9 @@ set INSTALL_SUCCESSFUL="Power plan installed successfully!"
 :Menu
 cls
 echo Available Power Plans:
-echo 1. Balanced
-echo 2. High Performance
-echo 3. Power Saver
+echo 1. Power Saver 
+echo 2. Balanced
+echo 3. High Performance
 echo 4. Ultimate Performance
 
 set /p choice=Enter the number of the desired power plan: 
