@@ -12,6 +12,4 @@ $appsToKeep = @(
     "Microsoft.MicrosoftEdge"
 )
 
-Get-AppxPackage -AllUsers |
-Where-Object { $appsToKeep -notcontains $_.Name } |
-Remove-AppxPackage
+Get-AppxPackage -AllUsers | Where-Object { $appsToKeep -notcontains $_.Name } | Remove-AppxPackage
