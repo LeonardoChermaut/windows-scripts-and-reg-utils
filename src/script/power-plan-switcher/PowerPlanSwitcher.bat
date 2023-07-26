@@ -1,6 +1,5 @@
 @echo off
 
-:: Check if the script is being run as an administrator
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo Running as administrator...
