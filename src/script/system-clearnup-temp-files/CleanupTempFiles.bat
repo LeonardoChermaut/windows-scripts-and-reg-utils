@@ -7,7 +7,6 @@ set NEED_ADMIN="This script requires administrator privileges. Please provide yo
 
 echo %CLEANING_UP%
 
-REM Check if running with administrator privileges
 NET SESSION >NUL 2>&1
 IF %ERRORLEVEL% EQU 0 (
     GOTO :AdminMode
